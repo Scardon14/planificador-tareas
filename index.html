@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación del documento -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adapta la página a móviles -->
+    <meta name="theme-color" content="#27456C"> <!-- Define el color de la interfaz del navegador -->
+    <title>Al día | Organiza tus metas</title> <!-- Define el título de la pestaña -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"> <!-- Carga Bootstrap -->
+    <link rel="stylesheet" href="./css/style.css"> <!-- Carga los estilos de Al día -->
+</head>
+<body>
+
+    <header class="app-header"> <!-- Presenta la identidad de la aplicación -->
+        <div class="container header-content"> <!-- Centra el contenido del encabezado -->
+            <a class="brand" href="#" aria-label="Al día, inicio"> <!-- Define la marca de la aplicación -->
+                <span class="brand-icon">✓</span> <!-- Muestra un símbolo decorativo -->
+                <span>Al día<span class="brand-dot">.</span></span> <!-- Muestra el nombre -->
+            </a>
+            <div class="header-message"> <!-- Agrupa el mensaje principal -->
+                <span class="eyebrow">TU ESPACIO, TUS METAS</span> <!-- Presenta un texto complementario -->
+                <h1>Haz que las cosas sucedan.</h1> <!-- Muestra el mensaje principal -->
+                <p>Organiza tus tareas, avanza a tu ritmo y celebra cada logro.</p> <!-- Explica el propósito -->
+            </div>
+            <div class="header-decoration" aria-hidden="true">✳</div> <!-- Añade un detalle visual -->
+        </div>
+    </header>
+
+    <main class="container app-main"> <!-- Contiene el contenido principal -->
+        <section class="welcome-row"> <!-- Presenta la sección de bienvenida -->
+            <div>
+                <p class="section-kicker">TU PLANIFICADOR PERSONAL</p> <!-- Identifica la sección -->
+                <h2>Tu día empieza aquí <span>✦</span></h2> <!-- Muestra el título -->
+                <p class="section-description">Un paso a la vez también es avanzar.</p> <!-- Motiva al usuario -->
+            </div>
+            <div class="date-chip"><span>✦</span> Cada tarea cuenta</div> <!-- Muestra un detalle visual -->
+        </section>
+
+        <section class="stats-grid" aria-label="Resumen de tareas"> <!-- Agrupa las estadísticas -->
+            <article class="stat-card stat-total"> <!-- Presenta el total -->
+                <div class="stat-icon">▤</div> <!-- Identifica visualmente la estadística -->
+                <div><p>Total de tareas</p><strong id="total-tareas">0</strong></div> <!-- Muestra el total -->
+            </article>
+            <article class="stat-card stat-pending"> <!-- Presenta las tareas pendientes -->
+                <div class="stat-icon">◷</div> <!-- Identifica las tareas por hacer -->
+                <div><p>Por hacer</p><strong id="total-pendientes">0</strong></div> <!-- Muestra la cantidad -->
+            </article>
+            <article class="stat-card stat-progress"> <!-- Presenta las tareas en proceso -->
+                <div class="stat-icon">↗</div> <!-- Identifica el progreso -->
+                <div><p>En proceso</p><strong id="total-proceso">0</strong></div> <!-- Muestra la cantidad -->
+            </article>
+            <article class="stat-card stat-done"> <!-- Presenta las tareas completadas -->
+                <div class="stat-icon">✓</div> <!-- Identifica las tareas completadas -->
+                <div><p>Hechas</p><strong id="total-hechas">0</strong></div> <!-- Muestra la cantidad -->
+            </article>
+        </section>
+
+        <section class="form-section" aria-labelledby="titulo-formulario"> <!-- Agrupa el formulario -->
+            <div class="section-heading"> <!-- Presenta el título del formulario -->
+                <div class="heading-icon">＋</div> <!-- Muestra un símbolo decorativo -->
+                <div><h2 id="titulo-formulario">Crear nueva tarea</h2><p>Todo gran resultado empieza con un primer paso.</p></div> <!-- Describe la acción -->
+            </div>
+
+            <div id="mensajes-error" class="alert alert-danger d-none" role="alert" aria-live="polite"></div> <!-- Muestra los errores -->
+            <div id="mensaje-exito" class="alert alert-success d-none" role="status" aria-live="polite"></div> <!-- Muestra confirmaciones -->
+
+            <form id="formulario" novalidate> <!-- Define el formulario -->
+                <div class="row g-4"> <!-- Organiza los campos -->
+                    <div class="col-12"> <!-- Ocupa todo el ancho -->
+                        <label for="nombre" class="form-label">Nombre de la tarea <span>*</span></label> <!-- Etiqueta el nombre -->
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej.: Diseñar página web" required> <!-- Recoge el nombre -->
+                        <div class="form-text">Utiliza más de 8 caracteres.</div> <!-- Indica la longitud mínima -->
+                    </div>
+                    <div class="col-12"> <!-- Ocupa todo el ancho -->
+                        <label for="descripcion" class="form-label">Descripción <span>*</span></label> <!-- Etiqueta la descripción -->
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="¿Qué necesitas hacer?" required></textarea> <!-- Recoge la descripción -->
+                        <div class="form-text">Describe la tarea con más de 15 caracteres.</div> <!-- Indica la longitud mínima -->
+                    </div>
+                    <div class="col-12 col-md-6"> <!-- Coloca el responsable en una columna -->
+                        <label for="asignado-a" class="form-label">Responsable <span>*</span></label> <!-- Etiqueta el responsable -->
+                        <input type="text" class="form-control" id="asignado-a" name="asignadoA" placeholder="Ej.: Gabriela Cardona" required> <!-- Recoge el responsable -->
+                    </div>
+                    <div class="col-12 col-md-6"> <!-- Coloca la fecha en otra columna -->
+                        <label for="fecha-entrega" class="form-label">Fecha de entrega <span>*</span></label> <!-- Etiqueta la fecha -->
+                        <input type="date" class="form-control" id="fecha-entrega" name="fechaDeEntrega" required> <!-- Recoge la fecha -->
+                    </div>
+                    <div class="col-12 col-md-6"> <!-- Coloca el estado inicial en una columna -->
+                        <label for="estado" class="form-label">Estado inicial <span>*</span></label> <!-- Etiqueta el estado -->
+                        <select class="form-select" id="estado" name="estado" required> <!-- Permite seleccionar el estado -->
+                            <option value="" selected disabled>Selecciona un estado</option> <!-- Obliga a elegir un estado -->
+                            <option value="POR_HACER">Por hacer</option> <!-- Define el estado inicial -->
+                            <option value="EN_PROCESO">En proceso</option> <!-- Define el estado de ejecución -->
+                            <option value="REVISION">Revisión</option> <!-- Define el estado de revisión -->
+                            <option value="HECHO">Hecho</option> <!-- Define el estado completado -->
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 form-note"> <!-- Presenta una nota junto al estado -->
+                        <span class="note-star">✦</span> <!-- Añade un detalle visual -->
+                        <p>Recuerda: avanzar poco a poco también es avanzar.</p> <!-- Muestra un mensaje motivador -->
+                    </div>
+                    <div class="col-12 d-flex justify-content-end gap-2 flex-wrap"> <!-- Alinea los botones -->
+                        <button type="reset" class="btn btn-light-custom">Limpiar</button> <!-- Restablece los campos -->
+                        <button type="submit" class="btn btn-create"><span>＋</span> Crear tarea</button> <!-- Envía el formulario -->
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="tasks-section" aria-labelledby="titulo-tareas"> <!-- Agrupa las tareas registradas -->
+            <div class="tasks-heading"> <!-- Presenta el encabezado de la lista -->
+                <div><p class="section-kicker">MANTÉN EL RITMO</p><h2 id="titulo-tareas">Mis tareas <span id="contador-tareas">0</span></h2></div> <!-- Muestra el título y el contador -->
+                <p class="tasks-hint">Cada pequeño avance te acerca a tu meta.</p> <!-- Añade una descripción -->
+            </div>
+
+            <div id="estado-lista" class="empty-state"> <!-- Muestra el estado inicial de la lista -->
+                <div class="empty-icon">✳</div> <!-- Muestra un símbolo decorativo -->
+                <h3>Tu espacio está listo</h3> <!-- Presenta el mensaje principal -->
+                <p>Agrega tu primera tarea y empieza a organizar tus ideas.</p> <!-- Explica cómo comenzar -->
+            </div>
+
+            <div id="lista-tareas" class="row g-4"></div> <!-- Aquí se insertan las tarjetas -->
+        </section>
+    </main>
+
+    <footer class="app-footer"> <!-- Define el pie de página -->
+        <p>Hecho con intención, organizado con <strong>Al día</strong> <span>♥</span></p> <!-- Muestra el cierre -->
+    </footer>
+
+    <script src="./js/script.js"></script> <!-- Carga la lógica de la aplicación -->
+</body>
+</html>

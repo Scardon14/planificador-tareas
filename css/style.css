@@ -1,0 +1,843 @@
+:root { /* Define la paleta de Al día */
+    --azul-oscuro: #27456C; /* Color principal */
+    --azul-petroleo: #47748B; /* Color secundario */
+    --azul-claro: #99BFD5; /* Color suave */
+    --rosa-pastel: #ECCCCA; /* Color de acento */
+    --coral: #E95C6C; /* Color de acciones */
+    --salmon: #F7A088; /* Color complementario */
+    --fondo: #F7F5F2; /* Fondo de la página */
+    --blanco: #FFFFFF; /* Fondo de tarjetas */
+    --texto: #34465A; /* Color de texto secundario */
+}
+
+/* Define el aspecto general */
+* {
+    box-sizing: border-box; /* Incluye padding y bordes en el tamaño calculado */
+}
+
+/* Estiliza el cuerpo de la página */
+body {
+    margin: 0; /* Elimina el margen predeterminado */
+    background: var(--fondo); /* Aplica el fondo cálido */
+    color: var(--azul-oscuro); /* Define el color principal del texto */
+    font-family: "Segoe UI", Arial, sans-serif; /* Define la tipografía */
+}
+
+/* Diseña el encabezado */
+.app-header {
+    position: relative; /* Permite ubicar la decoración */
+    overflow: hidden; /* Recorta la decoración que sobresale */
+    background: var(--azul-oscuro); /* Aplica el azul principal */
+    color: var(--blanco); /* Hace blanco el texto */
+}
+
+
+/* Encabezado más compacto */
+.app-header {
+    background: var(--azul-oscuro);
+    color: var(--blanco);
+}
+
+/* Distribuye el logo y las frases */
+.header-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    min-height: 175px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+/* Logo principal */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--blanco);
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Chulito del logo */
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 17px;
+    background: var(--coral);
+    color: var(--blanco);
+    font-size: 2rem;
+}
+
+/* Punto coral de la marca */
+.brand-dot {
+    color: var(--salmon);
+}
+
+/* Texto de la derecha */
+.header-message {
+    max-width: 380px;
+    margin-left: auto;
+}
+
+/* Frase principal más pequeña */
+.header-message h1 {
+    margin-bottom: 5px;
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+}
+
+/* Frase secundaria más discreta */
+.header-message p {
+    margin-bottom: 0;
+    color: #D9E5EF;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+/* Decoración más pequeña */
+.header-decoration {
+    font-size: 5rem;
+    line-height: 1;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 575px) {
+    .header-content {
+        min-height: auto;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 22px;
+        padding-bottom: 22px;
+    }
+
+    .brand {
+        font-size: 2.3rem;
+    }
+
+    .brand-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.7rem;
+    }
+
+    .header-message {
+        flex-basis: 100%;
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .header-message h1 {
+        font-size: 1.35rem;
+    }
+
+    .header-message p {
+        font-size: 0.8rem;
+    }
+
+    .header-decoration {
+        display: none;
+    }
+}
+
+
+/* Estiliza el texto pequeño del encabezado */
+.eyebrow,
+.section-kicker {
+    margin-bottom: 9px; /* Separa el texto del título */
+    color: var(--coral); /* Aplica el color coral */
+    font-size: 0.76rem; /* Reduce el tamaño */
+    font-weight: 800; /* Destaca el texto */
+    letter-spacing: 2px; /* Separa las letras */
+}
+
+/* Destaca el mensaje principal */
+.header-message h1 {
+    margin-bottom: 10px; /* Separa el título de la descripción */
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Adapta el tamaño al dispositivo */
+    font-weight: 800; /* Resalta el título */
+    letter-spacing: -1px; /* Ajusta el espacio entre letras */
+}
+
+/* Estiliza la descripción del encabezado */
+.header-message p {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    color: #D9E5EF; /* Aplica un tono claro */
+    line-height: 1.7; /* Mejora la lectura */
+}
+
+/* Decora el encabezado */
+.header-decoration {
+    color: rgba(255, 255, 255, 0.08); /* Usa un blanco transparente */
+    font-size: 10rem; /* Amplía el símbolo */
+    line-height: 1; /* Evita espacio vertical extra */
+}
+
+/* Limita el ancho y separa el contenido principal */
+.app-main {
+    max-width: 1140px; /* Evita que el contenido sea demasiado ancho */
+    padding-top: 42px; /* Separa el contenido del encabezado */
+    padding-bottom: 35px; /* Separa el contenido del pie */
+}
+
+/* Organiza la bienvenida */
+.welcome-row {
+    display: flex; /* Coloca texto y distintivo en una fila */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Separa los extremos */
+    gap: 20px; /* Agrega espacio entre elementos */
+    margin-bottom: 25px; /* Separa las estadísticas */
+}
+
+/* Estiliza el título de bienvenida */
+.welcome-row h2 {
+    margin-bottom: 8px; /* Separa el título de la descripción */
+    font-size: 1.8rem; /* Define el tamaño */
+    font-weight: 800; /* Resalta el título */
+}
+
+/* Colorea el símbolo del título */
+.welcome-row h2 span {
+    color: var(--coral); /* Aplica el coral */
+}
+
+/* Estiliza la descripción de bienvenida */
+.section-description {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    color: #788491; /* Aplica un gris suave */
+}
+
+/* Diseña el distintivo de bienvenida */
+.date-chip {
+    padding: 11px 16px; /* Agrega espacio interior */
+    border: 1px solid var(--rosa-pastel); /* Dibuja un borde suave */
+    border-radius: 30px; /* Redondea el distintivo */
+    background: var(--blanco); /* Aplica un fondo blanco */
+    color: var(--azul-petroleo); /* Aplica el azul secundario */
+    font-size: 0.85rem; /* Ajusta el tamaño */
+    font-weight: 700; /* Destaca el texto */
+}
+
+/* Colorea el símbolo del distintivo */
+.date-chip span {
+    margin-right: 5px; /* Separa el símbolo del texto */
+    color: var(--coral); /* Aplica el coral */
+}
+
+/* Organiza las estadísticas */
+.stats-grid {
+    display: grid; /* Utiliza una cuadrícula */
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* Distribuye cuatro tarjetas iguales */
+    gap: 16px; /* Separa las tarjetas */
+    margin-bottom: 32px; /* Separa las estadísticas del formulario */
+}
+
+/* Diseña las tarjetas de estadísticas */
+.stat-card {
+    display: flex; /* Coloca el icono junto al dato */
+    align-items: center; /* Centra verticalmente */
+    gap: 14px; /* Separa icono y texto */
+    min-width: 0; /* Permite reducir el contenido */
+    padding: 20px; /* Agrega espacio interior */
+    border: 1px solid #ECE8E4; /* Dibuja un borde discreto */
+    border-radius: 16px; /* Redondea las esquinas */
+    background: var(--blanco); /* Aplica el fondo blanco */
+    box-shadow: 0 5px 18px rgba(39, 69, 108, 0.035); /* Añade una sombra sutil */
+}
+
+/* Diseña los iconos de las estadísticas */
+.stat-icon {
+    display: grid; /* Permite centrar el icono */
+    place-items: center; /* Centra el símbolo */
+    flex-shrink: 0; /* Evita que el icono se comprima */
+    width: 44px; /* Define el ancho */
+    height: 44px; /* Define la altura */
+    border-radius: 13px; /* Redondea las esquinas */
+    background: #E9EFF5; /* Aplica un fondo azul claro */
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-size: 1.4rem; /* Aumenta el símbolo */
+    font-weight: 800; /* Destaca el símbolo */
+}
+
+/* Colorea el icono de tareas pendientes */
+.stat-pending .stat-icon {
+    background: #F9E9E9; /* Aplica un rosa suave */
+    color: var(--coral); /* Aplica el coral */
+}
+
+/* Colorea el icono de tareas en proceso */
+.stat-progress .stat-icon {
+    background: #E8F2F6; /* Aplica un azul muy claro */
+    color: var(--azul-petroleo); /* Aplica el azul secundario */
+}
+
+/* Colorea el icono de tareas hechas */
+.stat-done .stat-icon {
+    background: #E5F1E9; /* Aplica un verde pastel */
+    color: #35745B; /* Aplica un verde oscuro */
+}
+
+/* Estiliza las etiquetas de las estadísticas */
+.stat-card p {
+    margin-bottom: 4px; /* Separa la etiqueta del número */
+    color: #7D8792; /* Aplica un gris suave */
+    font-size: 0.78rem; /* Reduce el tamaño */
+    font-weight: 600; /* Destaca la etiqueta */
+}
+
+/* Destaca los números de las estadísticas */
+.stat-card strong {
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-size: 1.8rem; /* Aumenta el número */
+    font-weight: 800; /* Resalta el número */
+    line-height: 1; /* Ajusta la altura */
+}
+
+/* Diseña la tarjeta del formulario */
+.form-section {
+    padding: 30px; /* Agrega espacio interior */
+    border: 1px solid #ECE8E4; /* Dibuja un borde discreto */
+    border-radius: 20px; /* Redondea las esquinas */
+    background: var(--blanco); /* Aplica el fondo blanco */
+    box-shadow: 0 8px 25px rgba(39, 69, 108, 0.045); /* Añade profundidad */
+}
+
+/* Organiza el encabezado del formulario */
+.section-heading {
+    display: flex; /* Coloca icono y texto en una fila */
+    align-items: center; /* Centra verticalmente */
+    gap: 15px; /* Separa los elementos */
+    margin-bottom: 25px; /* Separa el encabezado de los campos */
+}
+
+/* Diseña el icono del formulario */
+.heading-icon {
+    display: grid; /* Permite centrar el símbolo */
+    place-items: center; /* Centra el símbolo */
+    flex-shrink: 0; /* Evita que se comprima */
+    width: 48px; /* Define el ancho */
+    height: 48px; /* Define la altura */
+    border-radius: 15px; /* Redondea las esquinas */
+    background: #FCE9E8; /* Aplica el fondo rosado */
+    color: var(--coral); /* Aplica el coral */
+    font-size: 1.8rem; /* Amplía el símbolo */
+}
+
+/* Estiliza el título del formulario */
+.section-heading h2 {
+    margin-bottom: 5px; /* Separa el título de la descripción */
+    font-size: 1.35rem; /* Define el tamaño */
+    font-weight: 800; /* Resalta el título */
+}
+
+/* Estiliza la descripción del formulario */
+.section-heading p {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    color: #87909A; /* Aplica un gris suave */
+    font-size: 0.9rem; /* Ajusta el tamaño */
+}
+
+/* Estiliza las etiquetas */
+.form-label {
+    margin-bottom: 9px; /* Separa la etiqueta del campo */
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-size: 0.92rem; /* Ajusta el tamaño */
+    font-weight: 700; /* Resalta la etiqueta */
+}
+
+/* Colorea los asteriscos de campos obligatorios */
+.form-label span {
+    color: var(--coral); /* Aplica el coral */
+}
+
+/* Estiliza los campos de entrada */
+.form-control,
+.form-select {
+    min-height: 48px; /* Mantiene una altura uniforme */
+    border: 1px solid #DCE4EA; /* Dibuja un borde claro */
+    border-radius: 10px; /* Redondea las esquinas */
+    background-color: #FEFEFE; /* Aplica un fondo casi blanco */
+    color: var(--texto); /* Mejora la legibilidad */
+    box-shadow: none; /* Elimina sombras predeterminadas */
+}
+
+/* Ajusta el área de descripción */
+textarea.form-control {
+    min-height: 110px; /* Da espacio para escribir */
+    resize: vertical; /* Permite cambiar solo la altura */
+}
+
+/* Destaca los campos seleccionados */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--azul-petroleo); /* Cambia el borde al enfocarse */
+    box-shadow: 0 0 0 3px rgba(71, 116, 139, 0.13); /* Añade un halo suave */
+}
+
+/* Estiliza las ayudas del formulario */
+.form-text {
+    margin-top: 6px; /* Separa la ayuda del campo */
+    color: #8A949E; /* Aplica un gris suave */
+    font-size: 0.78rem; /* Reduce el tamaño */
+}
+
+/* Diseña la nota motivadora */
+.form-note {
+    display: flex; /* Coloca símbolo y texto en una fila */
+    align-items: center; /* Centra verticalmente */
+    gap: 10px; /* Separa el símbolo del texto */
+    color: var(--azul-petroleo); /* Aplica el azul secundario */
+}
+
+/* Estiliza el símbolo de la nota */
+.note-star {
+    color: var(--coral); /* Aplica el coral */
+    font-size: 1.5rem; /* Aumenta el símbolo */
+}
+
+/* Elimina el margen de la nota */
+.form-note p {
+    margin-bottom: 0; /* Elimina el espacio inferior */
+    font-size: 0.85rem; /* Ajusta el tamaño */
+}
+
+/* Diseña el botón de creación */
+.btn-create {
+    padding: 12px 22px; /* Aumenta el área de clic */
+    border: 1px solid var(--azul-oscuro); /* Define el borde */
+    border-radius: 10px; /* Redondea las esquinas */
+    background: var(--azul-oscuro); /* Aplica el azul principal */
+    color: var(--blanco); /* Hace blanco el texto */
+    font-weight: 700; /* Destaca el texto */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Suaviza las interacciones */
+}
+
+/* Aplica el efecto al pasar el cursor */
+.btn-create:hover {
+    transform: translateY(-1px); /* Eleva ligeramente el botón */
+    border-color: var(--azul-petroleo); /* Cambia el borde */
+    background: var(--azul-petroleo); /* Cambia el fondo */
+    color: var(--blanco); /* Mantiene el texto blanco */
+}
+
+/* Separa el símbolo del botón */
+.btn-create span {
+    margin-right: 5px; /* Agrega espacio al símbolo */
+    font-size: 1.1rem; /* Aumenta el símbolo */
+}
+
+/* Diseña el botón de limpiar */
+.btn-light-custom {
+    padding: 12px 22px; /* Iguala el área del botón principal */
+    border: 1px solid #DCE4EA; /* Dibuja un borde claro */
+    border-radius: 10px; /* Redondea las esquinas */
+    background: #F7F8FA; /* Aplica un fondo claro */
+    color: var(--azul-petroleo); /* Aplica el azul secundario */
+    font-weight: 700; /* Destaca el texto */
+}
+
+/* Aplica el efecto al botón de limpiar */
+.btn-light-custom:hover {
+    border-color: var(--rosa-pastel); /* Cambia el borde */
+    background: #FCEDEC; /* Aplica un fondo rosado */
+    color: var(--azul-oscuro); /* Oscurece el texto */
+}
+
+/* Separa el encabezado de la lista */
+.tasks-section {
+    margin-top: 45px; /* Separa la lista del formulario */
+}
+
+/* Organiza el encabezado de las tareas */
+.tasks-heading {
+    display: flex; /* Coloca el título y la ayuda en una fila */
+    align-items: end; /* Alinea los elementos por abajo */
+    justify-content: space-between; /* Separa los extremos */
+    gap: 20px; /* Agrega espacio */
+    margin-bottom: 22px; /* Separa las tarjetas */
+}
+
+/* Estiliza el título de las tareas */
+.tasks-heading h2 {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    font-size: 1.7rem; /* Define el tamaño */
+    font-weight: 800; /* Resalta el título */
+}
+
+/* Diseña el contador del título */
+#contador-tareas {
+    display: inline-grid; /* Permite centrar el número */
+    place-items: center; /* Centra el contenido */
+    min-width: 32px; /* Evita que el contador sea demasiado estrecho */
+    height: 32px; /* Define la altura */
+    margin-left: 7px; /* Separa el contador del título */
+    padding: 0 9px; /* Agrega espacio horizontal */
+    border-radius: 20px; /* Redondea el contador */
+    background: #E6EDF3; /* Aplica un fondo azul claro */
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-size: 0.85rem; /* Ajusta el tamaño */
+    vertical-align: middle; /* Alinea con el título */
+}
+
+/* Estiliza la ayuda de la lista */
+.tasks-hint {
+    margin-bottom: 3px; /* Alinea el texto */
+    color: #87909A; /* Aplica un gris suave */
+    font-size: 0.88rem; /* Ajusta el tamaño */
+}
+
+/* Diseña el estado vacío */
+.empty-state {
+    padding: 45px 20px; /* Agrega espacio interior */
+    border: 1px dashed #D8DFE5; /* Dibuja un borde discontinuo */
+    border-radius: 18px; /* Redondea las esquinas */
+    background: rgba(255, 255, 255, 0.65); /* Aplica un fondo translúcido */
+    text-align: center; /* Centra el contenido */
+}
+
+/* Diseña el icono del estado vacío */
+.empty-icon {
+    display: grid; /* Permite centrar el símbolo */
+    place-items: center; /* Centra el símbolo */
+    width: 60px; /* Define el ancho */
+    height: 60px; /* Define la altura */
+    margin: 0 auto 16px; /* Centra el icono y separa el texto */
+    border-radius: 20px; /* Redondea las esquinas */
+    background: #FCE9E8; /* Aplica el fondo rosado */
+    color: var(--coral); /* Aplica el coral */
+    font-size: 2rem; /* Amplía el símbolo */
+}
+
+/* Estiliza el título del estado vacío */
+.empty-state h3 {
+    margin-bottom: 8px; /* Separa el título de la descripción */
+    font-size: 1.15rem; /* Define el tamaño */
+    font-weight: 800; /* Resalta el título */
+}
+
+/* Estiliza la descripción del estado vacío */
+.empty-state p {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    color: #87909A; /* Aplica un gris suave */
+}
+
+/* Diseña cada tarjeta de tarea */
+.task-card {
+    height: 100%; /* Iguala la altura dentro de su columna */
+    overflow: hidden; /* Recorta el contenido que sobresale */
+    border: 1px solid #E9E6E2; /* Dibuja un borde discreto */
+    border-top: 4px solid var(--azul-claro); /* Marca la parte superior */
+    border-radius: 16px; /* Redondea las esquinas */
+    background: var(--blanco); /* Aplica un fondo blanco */
+    box-shadow: 0 5px 18px rgba(39, 69, 108, 0.045); /* Añade una sombra suave */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Suaviza el movimiento */
+}
+
+/* Eleva la tarjeta al pasar el cursor */
+.task-card:hover {
+    transform: translateY(-3px); /* Eleva la tarjeta */
+    box-shadow: 0 12px 24px rgba(39, 69, 108, 0.09); /* Refuerza la sombra */
+}
+
+/* Colorea la tarjeta según su estado */
+.task-card.status-POR_HACER {
+    border-top-color: var(--coral); /* Marca las tareas por hacer */
+}
+
+/* Colorea las tareas en proceso */
+.task-card.status-EN_PROCESO {
+    border-top-color: var(--azul-petroleo); /* Marca las tareas en proceso */
+}
+
+/* Colorea las tareas en revisión */
+.task-card.status-REVISION {
+    border-top-color: var(--salmon); /* Marca las tareas en revisión */
+}
+
+/* Colorea las tareas completadas */
+.task-card.status-HECHO {
+    border-top-color: #76A98E; /* Marca las tareas completadas */
+}
+
+/* Organiza el encabezado de la tarjeta */
+.task-card-header {
+    display: flex; /* Coloca título e ID en una fila */
+    align-items: start; /* Alinea el contenido arriba */
+    justify-content: space-between; /* Separa los elementos */
+    gap: 10px; /* Agrega espacio */
+    padding: 19px 19px 10px; /* Define el espacio interior */
+}
+
+/* Estiliza el título de cada tarea */
+.task-card-title {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-size: 1.05rem; /* Define el tamaño */
+    font-weight: 800; /* Resalta el nombre */
+    overflow-wrap: anywhere; /* Evita desbordamientos */
+}
+
+/* Estiliza el ID de la tarjeta */
+.task-id {
+    flex-shrink: 0; /* Evita que el ID se comprima */
+    padding: 5px 8px; /* Agrega espacio interior */
+    border-radius: 7px; /* Redondea las esquinas */
+    background: #F0F3F6; /* Aplica un fondo gris azulado */
+    color: #6E7B88; /* Aplica un texto discreto */
+    font-size: 0.7rem; /* Reduce el tamaño */
+    font-weight: 700; /* Destaca el identificador */
+}
+
+/* Define el espacio del cuerpo de la tarjeta */
+.task-card-body {
+    padding: 8px 19px 18px; /* Agrega espacio interior */
+}
+
+/* Estiliza la descripción de la tarea */
+.task-description {
+    margin-bottom: 17px; /* Separa la descripción de los detalles */
+    color: #707D89; /* Aplica un gris legible */
+    font-size: 0.9rem; /* Ajusta el tamaño */
+    line-height: 1.6; /* Mejora la lectura */
+    overflow-wrap: anywhere; /* Evita que el texto se desborde */
+    white-space: pre-wrap; /* Conserva saltos de línea escritos */
+}
+
+/* Organiza los detalles de la tarea */
+.task-detail {
+    display: flex; /* Coloca etiqueta y valor en una fila */
+    align-items: start; /* Alinea el contenido arriba */
+    justify-content: space-between; /* Separa etiqueta y valor */
+    gap: 12px; /* Agrega espacio */
+    margin-bottom: 10px; /* Separa cada detalle */
+    font-size: 0.83rem; /* Ajusta el tamaño */
+}
+
+/* Estiliza las etiquetas de los detalles */
+.task-detail-label {
+    flex-shrink: 0; /* Evita que la etiqueta se comprima */
+    color: #87909A; /* Aplica un gris suave */
+}
+
+/* Estiliza los valores de los detalles */
+.task-detail-value {
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-weight: 700; /* Destaca los valores */
+    text-align: right; /* Alinea los valores a la derecha */
+    overflow-wrap: anywhere; /* Evita desbordamientos */
+}
+
+/* Estiliza la etiqueta de estado */
+.status-badge {
+    display: inline-block; /* Permite ajustar el espacio */
+    padding: 6px 10px; /* Agrega espacio interior */
+    border-radius: 20px; /* Redondea la etiqueta */
+    font-size: 0.76rem; /* Ajusta el tamaño */
+    font-weight: 800; /* Resalta el estado */
+}
+
+/* Aplica el estilo de tareas por hacer */
+.badge-POR_HACER {
+    background: #FCE7E8; /* Aplica un fondo rosado */
+    color: #B64150; /* Aplica un texto coral oscuro */
+}
+
+/* Aplica el estilo de tareas en proceso */
+.badge-EN_PROCESO {
+    background: #E4F0F5; /* Aplica un fondo azul claro */
+    color: #35667D; /* Aplica un texto azul oscuro */
+}
+
+/* Aplica el estilo de tareas en revisión */
+.badge-REVISION {
+    background: #FFF0E9; /* Aplica un fondo salmón claro */
+    color: #9A593E; /* Aplica un texto marrón */
+}
+
+/* Aplica el estilo de tareas hechas */
+.badge-HECHO {
+    background: #E3F2E8; /* Aplica un fondo verde pastel */
+    color: #347453; /* Aplica un texto verde oscuro */
+}
+
+/* Separa el selector de estado */
+.task-status-control {
+    margin-top: 17px; /* Separa el selector de los detalles */
+    padding-top: 15px; /* Agrega espacio superior */
+    border-top: 1px solid #F0EEEB; /* Divide la sección */
+}
+
+/* Estiliza la etiqueta del selector */
+.task-status-control label {
+    display: block; /* Coloca la etiqueta en una línea propia */
+    margin-bottom: 7px; /* Separa la etiqueta del selector */
+    color: #788491; /* Aplica un gris suave */
+    font-size: 0.78rem; /* Reduce el tamaño */
+    font-weight: 700; /* Resalta la etiqueta */
+}
+
+/* Estiliza el selector de estado de la tarjeta */
+.task-status-select {
+    width: 100%; /* Ocupa todo el ancho */
+    min-height: 42px; /* Define una altura cómoda */
+    padding: 8px 10px; /* Agrega espacio interior */
+    border: 1px solid #DCE4EA; /* Dibuja un borde */
+    border-radius: 9px; /* Redondea las esquinas */
+    background: #FAFBFC; /* Aplica un fondo claro */
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+    font-size: 0.83rem; /* Ajusta el tamaño */
+    font-weight: 600; /* Resalta el texto */
+}
+
+/* Destaca el selector al enfocarse */
+.task-status-select:focus {
+    outline: 2px solid rgba(71, 116, 139, 0.2); /* Añade un contorno visible */
+    border-color: var(--azul-petroleo); /* Cambia el borde */
+}
+
+/* Organiza el pie de la tarjeta */
+.task-card-footer {
+    display: flex; /* Coloca el ID y el botón en una fila */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Separa los elementos */
+    gap: 10px; /* Agrega espacio */
+    padding: 13px 19px; /* Define el espacio interior */
+    border-top: 1px solid #F0EEEB; /* Divide el pie */
+    background: #FEFDFB; /* Aplica un fondo cálido */
+}
+
+/* Estiliza el botón de eliminar */
+.btn-delete {
+    padding: 7px 11px; /* Define el espacio interior */
+    border: 1px solid #F2C8CC; /* Dibuja un borde rosado */
+    border-radius: 8px; /* Redondea las esquinas */
+    background: #FFFFFF; /* Aplica un fondo blanco */
+    color: #C74A59; /* Aplica un rojo suave */
+    font-size: 0.8rem; /* Ajusta el tamaño */
+    font-weight: 700; /* Resalta el texto */
+    transition: background-color 0.2s ease; /* Suaviza el cambio de fondo */
+}
+
+/* Aplica el efecto del botón de eliminar */
+.btn-delete:hover {
+    background: #FCE7E8; /* Aplica un fondo rosado */
+    color: #A92E40; /* Oscurece el texto */
+}
+
+/* Estiliza las alertas */
+.alert {
+    border-radius: 10px; /* Redondea las esquinas */
+}
+
+/* Diseña el pie de página */
+.app-footer {
+    padding: 25px 15px; /* Agrega espacio interior */
+    border-top: 1px solid #E9E4DF; /* Separa el pie del contenido */
+    background: #F0EDE9; /* Aplica un fondo suave */
+    color: #77818C; /* Aplica un gris legible */
+    text-align: center; /* Centra el contenido */
+}
+
+/* Elimina el margen del texto del pie */
+.app-footer p {
+    margin-bottom: 0; /* Elimina el margen inferior */
+    font-size: 0.85rem; /* Ajusta el tamaño */
+}
+
+/* Resalta el nombre en el pie */
+.app-footer strong {
+    color: var(--azul-oscuro); /* Aplica el azul principal */
+}
+
+/* Colorea el corazón del pie */
+.app-footer span {
+    color: var(--coral); /* Aplica el coral */
+}
+
+/* Adapta la cuadrícula a tabletas */
+@media (max-width: 991px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* Muestra dos estadísticas por fila */
+    }
+
+    .header-content {
+        flex-wrap: wrap; /* Permite reorganizar el encabezado */
+    }
+
+    .header-message {
+        order: 3; /* Coloca el mensaje debajo de la marca */
+        flex-basis: 100%; /* Ocupa toda la fila */
+        margin-left: 0; /* Elimina el margen lateral */
+    }
+
+    .header-decoration {
+        margin-left: auto; /* Alinea la decoración a la derecha */
+    }
+}
+
+/* Adapta el diseño a móviles */
+@media (max-width: 575px) {
+    .app-main {
+        padding-top: 28px; /* Reduce el espacio superior */
+    }
+
+    .welcome-row,
+    .tasks-heading {
+        align-items: start; /* Alinea el contenido arriba */
+        flex-direction: column; /* Coloca los elementos en columna */
+    }
+
+    .welcome-row h2,
+    .tasks-heading h2 {
+        font-size: 1.5rem; /* Reduce los títulos */
+    }
+
+    .stats-grid {
+        gap: 10px; /* Reduce el espacio entre estadísticas */
+    }
+
+    .stat-card {
+        gap: 9px; /* Reduce el espacio interno */
+        padding: 13px 10px; /* Reduce el relleno */
+    }
+
+    .stat-icon {
+        width: 36px; /* Reduce el icono */
+        height: 36px; /* Reduce el icono */
+        border-radius: 10px; /* Ajusta las esquinas */
+        font-size: 1.1rem; /* Reduce el símbolo */
+    }
+
+    .stat-card p {
+        font-size: 0.7rem; /* Reduce las etiquetas */
+    }
+
+    .stat-card strong {
+        font-size: 1.5rem; /* Ajusta los números */
+    }
+
+    .form-section {
+        padding: 20px 16px; /* Reduce el espacio del formulario */
+        border-radius: 16px; /* Ajusta las esquinas */
+    }
+
+    .header-decoration {
+        font-size: 5rem; /* Reduce la decoración */
+    }
+
+    .date-chip {
+        font-size: 0.8rem; /* Ajusta el distintivo */
+    }
+
+    .form-note {
+        padding-top: 0; /* Evita espacio innecesario */
+    }
+}
