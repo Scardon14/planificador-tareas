@@ -1,131 +1,136 @@
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8"> <!-- Define la codificación del documento -->
+<!DOCTYPE html> <!-- Declara que el documento usa HTML5 -->
+<html lang="es" data-bs-theme="light" data-palette="oceano"> <!-- Define idioma y tema inicial (theme.js los reemplaza según lo guardado) -->
+<head> <!-- Contiene la configuración del documento -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adapta la página a móviles -->
-    <meta name="theme-color" content="#27456C"> <!-- Define el color de la interfaz del navegador -->
-    <title>Al día | Organiza tus metas</title> <!-- Define el título de la pestaña -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"> <!-- Carga Bootstrap -->
-    <link rel="stylesheet" href="./css/style.css"> <!-- Carga los estilos de Al día -->
+    <title>Al día · Planificador de tareas</title> <!-- Título de la pestaña -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Acelera la conexión con Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Acelera la descarga de las fuentes -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"> <!-- Carga la tipografía Inter -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"> <!-- Carga los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> <!-- Carga los iconos de Bootstrap -->
+    <link rel="stylesheet" href="./css/themes.css"> <!-- Carga las paletas y los modos claro/oscuro -->
+    <link rel="stylesheet" href="./css/style.css"> <!-- Carga los estilos de los componentes -->
+    <script src="./js/config.js"></script> <!-- Carga la configuración (estados, paletas, reglas) -->
+    <script src="./js/storage.js"></script> <!-- Carga el acceso a localStorage -->
+    <script src="./js/dom.js"></script> <!-- Carga las utilidades del DOM -->
+    <script src="./js/theme.js"></script> <!-- Aplica el tema guardado antes de pintar la página (evita parpadeos) -->
 </head>
-<body>
+<body> <!-- Contiene lo visible de la página -->
 
-    <header class="app-header"> <!-- Presenta la identidad de la aplicación -->
-        <div class="container header-content"> <!-- Centra el contenido del encabezado -->
-            <a class="brand" href="#" aria-label="Al día, inicio"> <!-- Define la marca de la aplicación -->
-                <span class="brand-icon">✓</span> <!-- Muestra un símbolo decorativo -->
-                <span>Al día<span class="brand-dot">.</span></span> <!-- Muestra el nombre -->
+    <nav class="app-nav sticky-top"> <!-- Barra superior fija -->
+        <div class="container d-flex align-items-center justify-content-between"> <!-- Centra y distribuye el contenido -->
+            <a class="brand" href="#" aria-label="Al día, inicio"> <!-- Marca de la aplicación -->
+                <span class="brand-icon"><i class="bi bi-check2-square"></i></span> <!-- Logo -->
+                <span>Al día<span class="brand-dot">.</span></span> <!-- Nombre -->
             </a>
-            <div class="header-message"> <!-- Agrupa el mensaje principal -->
-                <span class="eyebrow">TU ESPACIO, TUS METAS</span> <!-- Presenta un texto complementario -->
-                <h1>Haz que las cosas sucedan.</h1> <!-- Muestra el mensaje principal -->
-                <p>Organiza tus tareas, avanza a tu ritmo y celebra cada logro.</p> <!-- Explica el propósito -->
-            </div>
-            <div class="header-decoration" aria-hidden="true">✳</div> <!-- Añade un detalle visual -->
-        </div>
-    </header>
-
-    <main class="container app-main"> <!-- Contiene el contenido principal -->
-        <section class="welcome-row"> <!-- Presenta la sección de bienvenida -->
-            <div>
-                <p class="section-kicker">TU PLANIFICADOR PERSONAL</p> <!-- Identifica la sección -->
-                <h2>Tu día empieza aquí <span>✦</span></h2> <!-- Muestra el título -->
-                <p class="section-description">Un paso a la vez también es avanzar.</p> <!-- Motiva al usuario -->
-            </div>
-            <div class="date-chip"><span>✦</span> Cada tarea cuenta</div> <!-- Muestra un detalle visual -->
-        </section>
-
-        <section class="stats-grid" aria-label="Resumen de tareas"> <!-- Agrupa las estadísticas -->
-            <article class="stat-card stat-total"> <!-- Presenta el total -->
-                <div class="stat-icon">▤</div> <!-- Identifica visualmente la estadística -->
-                <div><p>Total de tareas</p><strong id="total-tareas">0</strong></div> <!-- Muestra el total -->
-            </article>
-            <article class="stat-card stat-pending"> <!-- Presenta las tareas pendientes -->
-                <div class="stat-icon">◷</div> <!-- Identifica las tareas por hacer -->
-                <div><p>Por hacer</p><strong id="total-pendientes">0</strong></div> <!-- Muestra la cantidad -->
-            </article>
-            <article class="stat-card stat-progress"> <!-- Presenta las tareas en proceso -->
-                <div class="stat-icon">↗</div> <!-- Identifica el progreso -->
-                <div><p>En proceso</p><strong id="total-proceso">0</strong></div> <!-- Muestra la cantidad -->
-            </article>
-            <article class="stat-card stat-done"> <!-- Presenta las tareas completadas -->
-                <div class="stat-icon">✓</div> <!-- Identifica las tareas completadas -->
-                <div><p>Hechas</p><strong id="total-hechas">0</strong></div> <!-- Muestra la cantidad -->
-            </article>
-        </section>
-
-        <section class="form-section" aria-labelledby="titulo-formulario"> <!-- Agrupa el formulario -->
-            <div class="section-heading"> <!-- Presenta el título del formulario -->
-                <div class="heading-icon">＋</div> <!-- Muestra un símbolo decorativo -->
-                <div><h2 id="titulo-formulario">Crear nueva tarea</h2><p>Todo gran resultado empieza con un primer paso.</p></div> <!-- Describe la acción -->
-            </div>
-
-            <div id="mensajes-error" class="alert alert-danger d-none" role="alert" aria-live="polite"></div> <!-- Muestra los errores -->
-            <div id="mensaje-exito" class="alert alert-success d-none" role="status" aria-live="polite"></div> <!-- Muestra confirmaciones -->
-
-            <form id="formulario" novalidate> <!-- Define el formulario -->
-                <div class="row g-4"> <!-- Organiza los campos -->
-                    <div class="col-12"> <!-- Ocupa todo el ancho -->
-                        <label for="nombre" class="form-label">Nombre de la tarea <span>*</span></label> <!-- Etiqueta el nombre -->
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej.: Diseñar página web" required> <!-- Recoge el nombre -->
-                        <div class="form-text">Utiliza más de 8 caracteres.</div> <!-- Indica la longitud mínima -->
-                    </div>
-                    <div class="col-12"> <!-- Ocupa todo el ancho -->
-                        <label for="descripcion" class="form-label">Descripción <span>*</span></label> <!-- Etiqueta la descripción -->
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="¿Qué necesitas hacer?" required></textarea> <!-- Recoge la descripción -->
-                        <div class="form-text">Describe la tarea con más de 15 caracteres.</div> <!-- Indica la longitud mínima -->
-                    </div>
-                    <div class="col-12 col-md-6"> <!-- Coloca el responsable en una columna -->
-                        <label for="asignado-a" class="form-label">Responsable <span>*</span></label> <!-- Etiqueta el responsable -->
-                        <input type="text" class="form-control" id="asignado-a" name="asignadoA" placeholder="Ej.: Gabriela Cardona" required> <!-- Recoge el responsable -->
-                    </div>
-                    <div class="col-12 col-md-6"> <!-- Coloca la fecha en otra columna -->
-                        <label for="fecha-entrega" class="form-label">Fecha de entrega <span>*</span></label> <!-- Etiqueta la fecha -->
-                        <input type="date" class="form-control" id="fecha-entrega" name="fechaDeEntrega" required> <!-- Recoge la fecha -->
-                    </div>
-                    <div class="col-12 col-md-6"> <!-- Coloca el estado inicial en una columna -->
-                        <label for="estado" class="form-label">Estado inicial <span>*</span></label> <!-- Etiqueta el estado -->
-                        <select class="form-select" id="estado" name="estado" required> <!-- Permite seleccionar el estado -->
-                            <option value="" selected disabled>Selecciona un estado</option> <!-- Obliga a elegir un estado -->
-                            <option value="POR_HACER">Por hacer</option> <!-- Define el estado inicial -->
-                            <option value="EN_PROCESO">En proceso</option> <!-- Define el estado de ejecución -->
-                            <option value="REVISION">Revisión</option> <!-- Define el estado de revisión -->
-                            <option value="HECHO">Hecho</option> <!-- Define el estado completado -->
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 form-note"> <!-- Presenta una nota junto al estado -->
-                        <span class="note-star">✦</span> <!-- Añade un detalle visual -->
-                        <p>Recuerda: avanzar poco a poco también es avanzar.</p> <!-- Muestra un mensaje motivador -->
-                    </div>
-                    <div class="col-12 d-flex justify-content-end gap-2 flex-wrap"> <!-- Alinea los botones -->
-                        <button type="reset" class="btn btn-light-custom">Limpiar</button> <!-- Restablece los campos -->
-                        <button type="submit" class="btn btn-create"><span>＋</span> Crear tarea</button> <!-- Envía el formulario -->
-                    </div>
+            <div class="d-flex align-items-center gap-2"> <!-- Agrupa los controles de apariencia -->
+                <div class="dropdown"> <!-- Menú desplegable de paletas -->
+                    <button type="button" class="btn-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Elegir paleta de colores" title="Paleta de colores"><i class="bi bi-palette2"></i></button> <!-- Botón que abre el menú -->
+                    <ul class="dropdown-menu dropdown-menu-end" id="palette-menu"></ul> <!-- Aquí se insertan las paletas -->
                 </div>
-            </form>
+                <button type="button" class="btn-icon" id="mode-toggle" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro"><i class="bi bi-moon-stars-fill"></i></button> <!-- Alterna claro/oscuro -->
+            </div>
+        </div>
+    </nav>
+
+    <main class="container app-main"> <!-- Contenido principal -->
+        <section class="hero"> <!-- Banner de bienvenida con el progreso -->
+            <div> <!-- Columna de textos -->
+                <p class="hero-kicker">TU PLANIFICADOR PERSONAL</p> <!-- Texto pequeño superior -->
+                <h1>Haz que las cosas sucedan.</h1> <!-- Mensaje principal -->
+                <p class="hero-text">Arrastra tus tareas entre columnas y celebra cada logro.</p> <!-- Explica cómo se usa -->
+            </div>
+            <div class="hero-side"> <!-- Columna del progreso y el botón principal -->
+                <div class="d-flex justify-content-between small fw-semibold"><span>Progreso general</span><span id="progress-label">0%</span></div> <!-- Título y porcentaje -->
+                <div class="progress" role="progressbar" aria-label="Progreso general" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"> <!-- Contenedor de la barra -->
+                    <div class="progress-bar" id="progress-bar"></div> <!-- Barra que crece según lo completado -->
+                </div>
+                <button type="button" class="btn-hero" id="btn-nueva-tarea"><i class="bi bi-plus-lg"></i> Nueva tarea</button> <!-- Abre el formulario -->
+            </div>
         </section>
 
-        <section class="tasks-section" aria-labelledby="titulo-tareas"> <!-- Agrupa las tareas registradas -->
-            <div class="tasks-heading"> <!-- Presenta el encabezado de la lista -->
-                <div><p class="section-kicker">MANTÉN EL RITMO</p><h2 id="titulo-tareas">Mis tareas <span id="contador-tareas">0</span></h2></div> <!-- Muestra el título y el contador -->
-                <p class="tasks-hint">Cada pequeño avance te acerca a tu meta.</p> <!-- Añade una descripción -->
-            </div>
+        <section id="stats" class="stats-grid" aria-label="Resumen de tareas"></section> <!-- Aquí se insertan las estadísticas -->
 
-            <div id="estado-lista" class="empty-state"> <!-- Muestra el estado inicial de la lista -->
-                <div class="empty-icon">✳</div> <!-- Muestra un símbolo decorativo -->
-                <h3>Tu espacio está listo</h3> <!-- Presenta el mensaje principal -->
-                <p>Agrega tu primera tarea y empieza a organizar tus ideas.</p> <!-- Explica cómo comenzar -->
-            </div>
-
-            <div id="lista-tareas" class="row g-4"></div> <!-- Aquí se insertan las tarjetas -->
-        </section>
+        <section id="board" class="board" aria-label="Tablero de tareas"></section> <!-- Aquí se insertan las columnas -->
     </main>
 
-    <footer class="app-footer"> <!-- Define el pie de página -->
-        <p>Hecho con intención, organizado con <strong>Al día</strong> <span>♥</span></p> <!-- Muestra el cierre -->
+    <footer class="app-footer"> <!-- Pie de página -->
+        <p>Hecho con intención, organizado con <strong>Al día</strong></p> <!-- Mensaje de cierre -->
     </footer>
 
-    <script src="./js/script.js"></script> <!-- Carga la lógica de la aplicación -->
+    <div class="modal fade" id="modal-tarea" tabindex="-1" aria-labelledby="titulo-modal" aria-hidden="true"> <!-- Ventana del formulario -->
+        <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Centra y ensancha la ventana -->
+            <div class="modal-content"> <!-- Contenido de la ventana -->
+                <form id="formulario" novalidate> <!-- Formulario (la validación la hace validator.js) -->
+                    <div class="modal-header border-0 pb-0"> <!-- Encabezado de la ventana -->
+                        <h2 class="modal-title fs-4 fw-bold" id="titulo-modal">Crear nueva tarea</h2> <!-- Título -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> <!-- Botón para cerrar -->
+                    </div>
+                    <div class="modal-body"> <!-- Cuerpo de la ventana -->
+                        <div id="mensajes-error" class="alert alert-danger d-none" role="alert" aria-live="polite"></div> <!-- Muestra los errores de validación -->
+                        <div class="row g-3"> <!-- Organiza los campos -->
+                            <div class="col-12"> <!-- Campo de ancho completo -->
+                                <label for="nombre" class="form-label">Nombre de la tarea <span class="text-danger">*</span></label> <!-- Etiqueta del nombre -->
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej.: Diseñar página web" required> <!-- Campo del nombre -->
+                                <div class="form-text">Utiliza más de 8 caracteres.</div> <!-- Ayuda del nombre -->
+                            </div>
+                            <div class="col-12"> <!-- Campo de ancho completo -->
+                                <label for="descripcion" class="form-label">Descripción <span class="text-danger">*</span></label> <!-- Etiqueta de la descripción -->
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="¿Qué necesitas hacer?" required></textarea> <!-- Campo de la descripción -->
+                                <div class="form-text">Describe la tarea con más de 15 caracteres.</div> <!-- Ayuda de la descripción -->
+                            </div>
+                            <div class="col-12 col-md-6"> <!-- Campo en media columna -->
+                                <label for="asignado-a" class="form-label">Responsable <span class="text-danger">*</span></label> <!-- Etiqueta del responsable -->
+                                <input type="text" class="form-control" id="asignado-a" name="asignadoA" placeholder="Ej.: Gabriela Cardona" required> <!-- Campo del responsable -->
+                            </div>
+                            <div class="col-12 col-md-6"> <!-- Campo en media columna -->
+                                <label for="fecha-entrega" class="form-label">Fecha de entrega <span class="text-danger">*</span></label> <!-- Etiqueta de la fecha -->
+                                <input type="date" class="form-control" id="fecha-entrega" name="fechaDeEntrega" required> <!-- Campo de la fecha -->
+                            </div>
+                            <div class="col-12 col-md-6"> <!-- Campo en media columna -->
+                                <label for="estado" class="form-label">Estado inicial <span class="text-danger">*</span></label> <!-- Etiqueta del estado -->
+                                <select class="form-select" id="estado" name="estado" required></select> <!-- Selector de estado (se llena desde config.js) -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0"> <!-- Pie de la ventana con los botones -->
+                        <button type="button" class="btn-ghost" data-bs-dismiss="modal">Cancelar</button> <!-- Cierra sin guardar -->
+                        <button type="submit" class="btn-accent"><i class="bi bi-plus-lg"></i> Crear tarea</button> <!-- Envía el formulario -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-eliminar" tabindex="-1" aria-labelledby="titulo-eliminar" aria-hidden="true"> <!-- Ventana de confirmación de eliminación -->
+        <div class="modal-dialog modal-dialog-centered modal-sm"> <!-- Centra una ventana pequeña -->
+            <div class="modal-content text-center p-3"> <!-- Contenido de la ventana -->
+                <div class="modal-body"> <!-- Cuerpo de la ventana -->
+                    <i class="bi bi-trash3-fill delete-icon"></i> <!-- Icono de advertencia -->
+                    <h2 class="fs-5 fw-bold mt-2" id="titulo-eliminar">¿Eliminar tarea?</h2> <!-- Pregunta -->
+                    <p class="text-secondary mb-0">«<span id="nombre-eliminar"></span>» se eliminará de forma permanente.</p> <!-- Nombre de la tarea -->
+                </div>
+                <div class="d-flex justify-content-center gap-2 pt-2"> <!-- Botones de decisión -->
+                    <button type="button" class="btn-ghost" data-bs-dismiss="modal">Cancelar</button> <!-- Cancela la eliminación -->
+                    <button type="button" class="btn-danger-soft" id="btn-confirmar-eliminar">Eliminar</button> <!-- Confirma la eliminación -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container"></div> <!-- Zona donde aparecen los avisos -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> <!-- Carga el JavaScript de Bootstrap (modales, menús, avisos) -->
+    <script src="./js/dates.js"></script> <!-- Utilidades de fechas -->
+    <script src="./js/task.js"></script> <!-- Clase Task -->
+    <script src="./js/task-manager.js"></script> <!-- Clase TaskManager -->
+    <script src="./js/validator.js"></script> <!-- Validación del formulario -->
+    <script src="./js/confetti.js"></script> <!-- Efecto de confeti -->
+    <script src="./js/notifications.js"></script> <!-- Avisos y confirmaciones -->
+    <script src="./js/board.js"></script> <!-- Dibujo del tablero -->
+    <script src="./js/drag-drop.js"></script> <!-- Arrastrar y soltar -->
+    <script src="./js/form.js"></script> <!-- Formulario de tareas -->
+    <script src="./js/app.js"></script> <!-- Controlador principal (debe ir al final) -->
 </body>
 </html>
