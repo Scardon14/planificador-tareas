@@ -1,0 +1,329 @@
+body { /* Estilo general de la página */
+    background: var(--bg); /* Fondo según el tema */
+    color: var(--text); /* Texto según el tema */
+    font-family: var(--font); /* Tipografía de la aplicación */
+    transition: background var(--speed), color var(--speed); /* Suaviza el cambio de tema */
+}
+
+h1, h2, h3, h4, h5, h6 { color: inherit; } /* Los títulos heredan el color del tema (claro u oscuro) */
+
+.app-nav { /* Barra superior */
+    padding: 12px 0; /* Espacio vertical interno */
+    background: color-mix(in srgb, var(--surface) 85%, transparent); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Desenfoca lo que pasa por detrás */
+    border-bottom: 1px solid var(--border); /* Línea inferior sutil */
+}
+
+.brand { /* Marca de la aplicación */
+    display: inline-flex; /* Alinea logo y texto en fila */
+    align-items: center; /* Centra verticalmente */
+    gap: 10px; /* Separa logo y texto */
+    color: var(--text); /* Color del texto */
+    font-size: 1.4rem; /* Tamaño del nombre */
+    font-weight: 800; /* Texto muy grueso */
+    text-decoration: none; /* Quita el subrayado del enlace */
+}
+
+.brand-icon { /* Recuadro del logo */
+    display: grid; /* Permite centrar el icono */
+    place-items: center; /* Centra el icono */
+    width: 38px; /* Ancho del recuadro */
+    height: 38px; /* Alto del recuadro */
+    border-radius: 11px; /* Esquinas redondeadas */
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); /* Degradado con los colores de la paleta */
+    color: #fff; /* Icono blanco */
+}
+
+.brand-dot { color: var(--accent-2); } /* Punto final del nombre con el color de acento */
+
+.btn-icon { /* Botones redondos de la barra */
+    display: grid; /* Permite centrar el icono */
+    place-items: center; /* Centra el icono */
+    width: 40px; /* Ancho del botón */
+    height: 40px; /* Alto del botón */
+    border: 1px solid var(--border); /* Borde sutil */
+    border-radius: 12px; /* Esquinas redondeadas */
+    background: var(--surface); /* Fondo de superficie */
+    color: var(--text); /* Color del icono */
+    transition: transform var(--speed), border-color var(--speed); /* Suaviza los efectos */
+}
+
+.btn-icon:hover { /* Efecto al pasar el cursor */
+    border-color: var(--accent); /* Resalta el borde */
+    transform: translateY(-2px); /* Sube ligeramente */
+}
+
+.dropdown-menu { /* Menú de paletas */
+    --bs-dropdown-bg: var(--surface); /* Fondo del menú */
+    --bs-dropdown-color: var(--text); /* Color del texto */
+    --bs-dropdown-link-color: var(--text); /* Color de los elementos */
+    --bs-dropdown-link-hover-bg: var(--surface-2); /* Fondo al pasar el cursor */
+    --bs-dropdown-link-hover-color: var(--text); /* Texto al pasar el cursor */
+    --bs-dropdown-link-active-bg: var(--surface-2); /* Fondo del elemento activo */
+    --bs-dropdown-link-active-color: var(--text); /* Texto del elemento activo */
+    --bs-dropdown-border-color: var(--border); /* Borde del menú */
+    padding: 6px; /* Espacio interno */
+    border-radius: 14px; /* Esquinas redondeadas */
+    box-shadow: var(--shadow); /* Sombra del menú */
+}
+
+.palette-item { /* Elemento de paleta dentro del menú */
+    display: flex; /* Alinea muestra y nombre */
+    align-items: center; /* Centra verticalmente */
+    gap: 10px; /* Separa muestra y nombre */
+    border-radius: 10px; /* Esquinas redondeadas */
+    font-weight: 500; /* Grosor medio */
+}
+
+.palette-item.active { font-weight: 700; box-shadow: inset 0 0 0 2px var(--accent); } /* La paleta activa se marca con un borde de acento */
+
+.swatch { /* Muestra circular de una paleta */
+    width: 22px; /* Ancho de la muestra */
+    height: 22px; /* Alto de la muestra */
+    border-radius: 50%; /* Forma circular */
+    background: linear-gradient(135deg, var(--accent) 50%, var(--accent-2) 50%); /* Mitad color principal, mitad acento */
+}
+
+.app-main { padding-top: 28px; padding-bottom: 48px; } /* Espacio alrededor del contenido principal */
+
+.hero { /* Banner de bienvenida */
+    display: flex; /* Coloca textos y progreso en fila */
+    flex-wrap: wrap; /* Permite pasar a otra fila en pantallas pequeñas */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Separa ambas columnas */
+    gap: 24px; /* Espacio entre columnas */
+    padding: 32px; /* Espacio interno */
+    border-radius: 24px; /* Esquinas muy redondeadas */
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent-2) 80%, var(--accent))); /* Degradado con los colores de la paleta */
+    color: #fff; /* Texto blanco */
+    box-shadow: var(--shadow); /* Sombra del banner */
+}
+
+.hero-kicker { margin: 0 0 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; opacity: 0.85; } /* Texto pequeño superior */
+
+.hero h1 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; } /* Mensaje principal adaptable al ancho */
+
+.hero-text { margin: 8px 0 0; opacity: 0.9; } /* Texto de apoyo del banner */
+
+.hero-side { display: flex; flex-direction: column; gap: 10px; width: min(100%, 320px); } /* Columna del progreso y el botón */
+
+.progress { height: 10px; background: rgba(255, 255, 255, 0.3); border-radius: 99px; } /* Pista de la barra de progreso */
+
+.progress-bar { background: #fff; border-radius: 99px; transition: width 0.6s ease; } /* Barra blanca con crecimiento animado */
+
+.btn-hero { /* Botón principal del banner */
+    padding: 11px 18px; /* Espacio interno */
+    border: 0; /* Sin borde */
+    border-radius: 12px; /* Esquinas redondeadas */
+    background: #fff; /* Fondo blanco */
+    color: var(--accent); /* Texto con el color de la paleta */
+    font-weight: 700; /* Texto grueso */
+    transition: transform var(--speed), box-shadow var(--speed); /* Suaviza los efectos */
+}
+
+.btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2); } /* El botón sube y proyecta sombra */
+
+.btn-accent { /* Botón principal de los formularios */
+    padding: 10px 20px; /* Espacio interno */
+    border: 0; /* Sin borde */
+    border-radius: 12px; /* Esquinas redondeadas */
+    background: var(--accent); /* Fondo con el color de la paleta */
+    color: #fff; /* Texto blanco */
+    font-weight: 700; /* Texto grueso */
+    transition: filter var(--speed), transform var(--speed); /* Suaviza los efectos */
+}
+
+.btn-accent:hover { filter: brightness(1.1); transform: translateY(-1px); } /* Se ilumina y sube un poco */
+
+.btn-ghost { padding: 10px 18px; border: 1px solid var(--border); border-radius: 12px; background: transparent; color: var(--text); font-weight: 600; } /* Botón secundario con borde */
+
+.btn-ghost:hover { background: var(--surface-2); } /* Fondo sutil al pasar el cursor */
+
+.btn-danger-soft { padding: 10px 18px; border: 0; border-radius: 12px; background: #E03131; color: #fff; font-weight: 700; } /* Botón de eliminar confirmado */
+
+.delete-icon { font-size: 2.4rem; color: #E03131; } /* Icono grande de la ventana de eliminar */
+
+.stats-grid { /* Rejilla de estadísticas */
+    display: grid; /* Usa una rejilla */
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); /* Columnas adaptables */
+    gap: 14px; /* Espacio entre tarjetas */
+    margin: 22px 0; /* Separa del banner y del tablero */
+}
+
+.stat-card { /* Tarjeta de estadística */
+    display: flex; /* Alinea icono y datos */
+    align-items: center; /* Centra verticalmente */
+    gap: 14px; /* Separa icono y datos */
+    padding: 16px 18px; /* Espacio interno */
+    border: 1px solid var(--border); /* Borde sutil */
+    border-radius: var(--radius); /* Esquinas redondeadas */
+    background: var(--surface); /* Fondo de superficie */
+}
+
+.stat-icon { /* Recuadro del icono de estadística */
+    display: grid; /* Permite centrar el icono */
+    place-items: center; /* Centra el icono */
+    width: 44px; /* Ancho del recuadro */
+    height: 44px; /* Alto del recuadro */
+    border-radius: 12px; /* Esquinas redondeadas */
+    background: color-mix(in srgb, var(--st) 16%, transparent); /* Fondo suave del color de la estadística */
+    color: var(--st); /* Icono del color de la estadística */
+    font-size: 1.2rem; /* Tamaño del icono */
+}
+
+.stat-value { display: block; font-size: 1.6rem; font-weight: 800; line-height: 1.1; } /* Número grande de la estadística */
+
+.stat-label { color: var(--muted); font-size: 0.85rem; } /* Nombre de la estadística */
+
+.board { /* Tablero con las columnas */
+    display: grid; /* Usa una rejilla */
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); /* Columnas adaptables (se apilan en móvil) */
+    gap: 18px; /* Espacio entre columnas */
+    align-items: start; /* Cada columna crece según su contenido */
+}
+
+.board-column { /* Columna del tablero */
+    padding: 14px; /* Espacio interno */
+    border: 1px solid var(--border); /* Borde sutil */
+    border-top: 4px solid var(--st); /* Línea superior con el color del estado */
+    border-radius: var(--radius); /* Esquinas redondeadas */
+    background: var(--surface-2); /* Fondo secundario */
+}
+
+.column-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; } /* Encabezado de la columna */
+
+.column-title { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1rem; font-weight: 700; } /* Título de la columna */
+
+.column-title i { color: var(--st); } /* Icono del título con el color del estado */
+
+.column-count { min-width: 28px; padding: 2px 9px; border-radius: 99px; background: var(--surface); color: var(--muted); font-size: 0.8rem; font-weight: 700; text-align: center; } /* Contador de tareas */
+
+.board-list { /* Zona donde viven las tarjetas */
+    display: flex; /* Apila las tarjetas */
+    flex-direction: column; /* En vertical */
+    gap: 12px; /* Espacio entre tarjetas */
+    min-height: 130px; /* Altura mínima para poder soltar en columnas vacías */
+    padding: 4px; /* Espacio interno */
+    border: 2px dashed transparent; /* Borde invisible hasta que se resalte */
+    border-radius: 12px; /* Esquinas redondeadas */
+    transition: background var(--speed), border-color var(--speed); /* Suaviza el resaltado */
+}
+
+.board-list:empty::before { /* Mensaje de columna vacía */
+    content: "Arrastra tareas aquí"; /* Texto del mensaje */
+    margin: auto; /* Centra el mensaje */
+    color: var(--muted); /* Color discreto */
+    font-size: 0.88rem; /* Tamaño del texto */
+}
+
+.board-list.drag-over { border-color: var(--st); background: color-mix(in srgb, var(--st) 10%, transparent); } /* Resalta la columna donde caerá la tarjeta */
+
+.column-add { width: 100%; margin-top: 10px; padding: 9px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-weight: 600; } /* Botón de añadir tarea en la columna */
+
+.column-add:hover { background: var(--surface); color: var(--st); } /* Resalta al pasar el cursor */
+
+.task-card { /* Tarjeta de tarea */
+    padding: 14px; /* Espacio interno */
+    border: 1px solid var(--border); /* Borde sutil */
+    border-left: 4px solid var(--st); /* Barra lateral con el color del estado */
+    border-radius: 12px; /* Esquinas redondeadas */
+    background: var(--surface); /* Fondo de superficie */
+    box-shadow: var(--shadow); /* Sombra de la tarjeta */
+    cursor: grab; /* Indica que se puede arrastrar */
+    transition: transform var(--speed), box-shadow var(--speed); /* Suaviza los efectos */
+}
+
+.task-card:hover { transform: translateY(-2px); } /* La tarjeta sube al pasar el cursor */
+
+.task-card.dragging { opacity: 0.45; transform: rotate(2deg) scale(0.98); cursor: grabbing; } /* Aspecto de la tarjeta mientras se arrastra */
+
+.task-card.just-moved { animation: pop 0.45s ease; } /* Anima la tarjeta recién movida o creada */
+
+@keyframes pop { 0% { transform: scale(0.94); } 55% { transform: scale(1.04); } 100% { transform: scale(1); } } /* Efecto de rebote suave */
+
+.task-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; } /* Título y botón de eliminar */
+
+.task-title { margin: 0; font-size: 0.98rem; font-weight: 700; overflow-wrap: anywhere; } /* Título de la tarea */
+
+.btn-card-delete { padding: 2px 6px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); } /* Botón de eliminar */
+
+.btn-card-delete:hover { background: color-mix(in srgb, #E03131 14%, transparent); color: #E03131; } /* Se pone rojo al pasar el cursor */
+
+.task-description { margin: 8px 0 12px; color: var(--muted); font-size: 0.88rem; overflow-wrap: anywhere; } /* Descripción de la tarea */
+
+.task-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.82rem; } /* Responsable y fecha */
+
+.task-owner { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; } /* Responsable con su avatar */
+
+.avatar { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; } /* Círculo con las iniciales */
+
+.task-date { padding: 3px 9px; border-radius: 99px; background: var(--surface-2); color: var(--muted); font-weight: 600; } /* Etiqueta de fecha */
+
+.task-date.is-overdue { background: color-mix(in srgb, #E03131 15%, transparent); color: #E03131; } /* Fecha vencida en rojo */
+
+.task-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); } /* Fila de botones de cambio de estado */
+
+.btn-move { flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 9px; background: transparent; color: var(--muted); font-size: 0.78rem; font-weight: 600; white-space: nowrap; } /* Botón para mover la tarjeta */
+
+.btn-move:hover { border-color: var(--accent); color: var(--accent); } /* Resalta al pasar el cursor */
+
+.btn-move.is-next { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: transparent; color: var(--accent); } /* El botón de avanzar se destaca */
+
+.task-card.is-done .task-title { text-decoration: line-through; opacity: 0.65; } /* Tachado en tareas completadas */
+
+.task-card.is-done .task-description { opacity: 0.6; } /* Descripción atenuada en tareas completadas */
+
+.task-card.is-done { cursor: default; } /* Las tarjetas completadas ya no muestran la mano de arrastre */
+
+.task-locked { width: 100%; color: var(--st); font-size: 0.8rem; font-weight: 600; text-align: center; } /* Mensaje de bloqueo con el color de Completado */
+
+.modal-content { /* Ventanas modales */
+    --bs-modal-bg: var(--surface); /* Fondo de la ventana */
+    --bs-modal-color: var(--text); /* Color del texto */
+    border: 1px solid var(--border); /* Borde sutil */
+    border-radius: 20px; /* Esquinas redondeadas */
+}
+
+.form-control, .form-select { /* Campos del formulario */
+    background-color: var(--surface-2); /* Fondo del campo */
+    border-color: var(--border); /* Borde del campo */
+    color: var(--text); /* Color del texto */
+    border-radius: 12px; /* Esquinas redondeadas */
+}
+
+.form-control:focus, .form-select:focus { background-color: var(--surface-2); color: var(--text); border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); } /* Resalta el campo enfocado con el color de la paleta */
+
+.app-toast { /* Avisos temporales */
+    border: 0; /* Sin borde */
+    border-left: 5px solid var(--accent); /* Barra lateral de color */
+    border-radius: 14px; /* Esquinas redondeadas */
+    background: var(--surface); /* Fondo de superficie */
+    color: var(--text); /* Color del texto */
+    box-shadow: var(--shadow); /* Sombra del aviso */
+}
+
+.toast-icon { font-size: 1.4rem; color: var(--accent); } /* Icono del aviso */
+
+.toast-message { color: var(--muted); font-size: 0.88rem; } /* Mensaje del aviso */
+
+.toast-success { border-left-color: #2F9E44; } /* Aviso de éxito en verde */
+
+.toast-success .toast-icon { color: #2F9E44; } /* Icono verde */
+
+.toast-danger { border-left-color: #E03131; } /* Aviso de eliminación en rojo */
+
+.toast-danger .toast-icon { color: #E03131; } /* Icono rojo */
+
+.toast-celebrate { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-left-color: transparent; color: #fff; } /* Aviso de felicitación con degradado */
+
+.toast-celebrate .toast-icon, .toast-celebrate .toast-message { color: #fff; } /* Texto e icono blancos en la felicitación */
+
+.toast-celebrate .btn-close { filter: invert(1); } /* Botón de cerrar visible sobre el degradado */
+
+.confetti-canvas { position: fixed; inset: 0; z-index: 2000; pointer-events: none; } /* Lienzo del confeti sobre toda la pantalla sin bloquear clics */
+
+.app-footer { padding: 24px 0; color: var(--muted); font-size: 0.88rem; text-align: center; } /* Pie de página */
+
+@media (prefers-reduced-motion: reduce) { /* Para quienes desactivan las animaciones */
+    * { animation: none !important; transition: none !important; } /* Elimina animaciones y transiciones */
+}
